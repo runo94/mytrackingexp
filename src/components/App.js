@@ -1,8 +1,8 @@
 import React, {Component, Fragment} from 'react';
-import '../assets/styles/App.css';
 import Header from './Header'
 import Home from './Home'
 
+import '../assets/styles/App.css';
 
 class App extends Component {
   render() {
