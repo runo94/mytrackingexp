@@ -1,3 +1,7 @@
+#root {
+  min-height: 100vh;
+}
+
 .wrapperHome {
   border: 4px solid #f7f7f9;
   margin: 50px auto;
@@ -14,6 +18,10 @@
   color: #fff;
   opacity: .8;
   font-size: 16px;
+  display: flex;
+  width: 100%;
+  max-width: 38px;
+  justify-content: center;
 }
 
 .btn.mygreen:hover {
@@ -31,6 +39,10 @@
   color: #fff;
   opacity: .8;
   font-size: 16px;
+  display: flex;
+  width: 100%;
+  max-width: 38px;
+  justify-content: center;
 }
 
 .btn.myblue:hover {
@@ -41,4 +53,17 @@
 .btn.myblue:focus {
   background: #fff;
   color: #13dd5a;
+}
+
+@media screen and (max-width: 768px) {
+  .mobileMenu {
+    display: flex;
+    width: 280px;
+    height: 100vh;
+    background: #363a3e;
+    color: #fff;
+    top: 0;
+    position: fixed;
+    z-index: 999;
+  }
 }

@@ -7,7 +7,7 @@ class Header extends Component {
         <div className="container-fluid">
           <div className="row">
             <nav className="navbar navbar-expand-sm bg-primary navbar-dark col-12">
-              <span className="navbar-brand">My Sprort Tracker</span>
+              <span className="navbar-brand">My Sport Tracker</span>
             </nav>
           </div>
         </div>
