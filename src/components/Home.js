@@ -1,5 +1,6 @@
 import React, {Component, Fragment} from "react";
 import firebase from "firebase";
+import ChangeColor from "./ChangeColor";
 
 function RenderPullUps(props)  {
   return (
