@@ -1,6 +1,7 @@
 import React, {Component, Fragment} from "react";
 import firebase from "firebase";
 import ChangeColor from "./ChangeColor";
+import DataComponent from './DataComponent'
 
 function RenderPullUps(props)  {
   return (
@@ -31,8 +32,8 @@ class Home extends Component {
   constructor() {
     super();
     this.state = {
-      pullUps: 0,
-      bars: 0
+      pullUps: "",
+      bars: ""
     };
   }
 
@@ -43,16 +44,16 @@ class Home extends Component {
   }
 
   addPullUps = e => {
-
     e.preventDefault();
 
     const db = firebase.firestore();
-    const userRef = db.collection("mysporttracker_collect").add({
+    const pullUpsRef = db.collection("mysporttracker_collect").add({
       pullUps: this.state.pullUps,
+      time: new Date().getTime()
     });
 
     this.setState({
-      pullUps: 0
+      pullUps: "",
     });
   };
 
@@ -60,12 +61,13 @@ class Home extends Component {
     e.preventDefault();
 
     const db = firebase.firestore();
-    const userRef = db.collection("mysporttracker_collect").add({
+    const pullUpsRef = db.collection("mysporttracker_collect").add({
       bars: this.state.bars,
+      time: new Date().getTime()
     });
 
     this.setState({
-      "bars": 0
+      bars: ""
     });
   };
 
@@ -79,6 +81,7 @@ class Home extends Component {
             <div className="row">
               <RenderPullUps updateInput={this.updateInput} value={this.state.pullUps} addPullUps={this.addPullUps}/>
               <RenderBars updateInput={this.updateInput} value={this.state.bars} addBars={this.addBars}/>
+              <DataComponent />
             </div>
           </div>
         </div>

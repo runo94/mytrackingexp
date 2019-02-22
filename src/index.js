@@ -11,7 +11,6 @@ import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import reducer from './assets/reducers';
 import * as serviceWorker from './serviceWorker';
-import { initializeFirebase } from './assets/firebase';
 
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)));
 
@@ -25,5 +24,3 @@ ReactDOM.render(
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: http://bit.ly/CRA-PWA
 serviceWorker.unregister();
-
-initializeFirebase();

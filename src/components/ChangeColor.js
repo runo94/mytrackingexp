@@ -2,7 +2,7 @@ import React, {Fragment, Component} from 'react';
 
 class ChangeColor extends Component {
 
-    constructor(props){
+    constructor(){
         super()
         this.state = {
             colors: ["green", "red", "blue", "yellow", "purple"],
@@ -11,18 +11,26 @@ class ChangeColor extends Component {
     }
 
     coloresFiltered = () => {
-        let filteredColors = this.state.colors.map((color, index) => {
+        
+        let filteredColors = [];
+
+        let colorsArray = this.state.colors.map((color, index) => {
                 index++
                 return Object.assign({id: index}, {color: color})           
             })            
+        let hexesArray = this.state.hexes.map((hex, index) => {
+            index++
+            return Object.assign({id: index}, {hex: hex})           
+        })     
         
-        filteredColors = filteredColors.map((color,index)=> {
-            return Object.assign({...color}, {hex: this.state.hexes[index]})              
+        return filteredColors = colorsArray.map((color) => {
+           return hexesArray.map((hex) => {
+                if (color.id === hex.id) {     
+                    return <span style={{background: hex.hex, display: "inline-block", width: "25px", height: "25px"}} key={color.id}></span>
+                }                 
+            })
         })
 
-        return filteredColors.map((color, index)=> {
-            return !!color.hex ? <span style={{background: color.hex, display: "inline-block", width: "25px", height: "25px"}}></span> : ''
-        })
     }
 
     render(){
