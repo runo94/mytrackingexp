@@ -1,43 +1,46 @@
 import React, {Component, Fragment} from "react";
 import firebase from "firebase";
+import {connect} from 'react-redux'
+
+import * as actions from '../assets/actions/workout';
 
 class DataComponent extends Component {
 
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state = {
             data: null
         }
     }
 
     componentDidMount(){
-        const db = firebase.firestore();        
-    }
-
-    renderData = () => {
-        const db = firebase.firestore();      
-        let dataTracker = [];
-        db.collection("mysporttracker_collect").get().then(function(querySnapshot) {
-            return querySnapshot.forEach(function(doc) {
-                // doc.data() is never undefined for query doc snapshots
-                return dataTracker.push(Object.assign({pullUps: doc.data().pullUps}, {time: doc.data().time}))
-                 
-            });
-        });
-
-        return dataTracker.map(data => {
-            console.log(data.pullUps)
-            return <span>{data.pullUps}</span>
-        })
+        const db = firebase.firestore();   
+        this.props.getWorkoutData(db);
     }
 
     render() {
+        console.log();
+        
         return (
             <div>
-                <p>{this.renderData()}</p>
+                {
+                !this.props.workoutData.workout ? '' : this.props.workoutData.workout.map((data,index) => {
+                        return <p key={`pulls-id-${data.id}`} name={`pullUps-${data.pullUps}`}>Подтягивания:{data.pullUps}</p>
+                    })
+                }
+                {
+                !this.props.workoutData.workout ? '' : this.props.workoutData.workout.map((data,index) => {
+                        return <p>Брусья:{data.bars}</p>
+                    })
+                }
             </div>
         )
     }
 }
 
-export default DataComponent;
+const mapStateToProps = (state) => ({
+  workoutData: state.workout
+})
+
+
+export default connect(mapStateToProps, actions)(DataComponent);
